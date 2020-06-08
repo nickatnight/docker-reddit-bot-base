@@ -1,0 +1,35 @@
+version: '3'
+
+volumes:
+  base-data:
+  redis-data:
+
+services:
+  redis:
+    restart: always
+    env_file:
+      - .env
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  backend:
+    restart: always
+    env_file:
+      - .env
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+      # args:
+      #   # env: ${ENV}
+        # requirements_file: '${ENV}.txt'
+    ports:
+      - '9080:9080'
+    command: bash -c "waitforit -host=redis -port=6379 --timeout 30 && bot"
+    depends_on:
+      - redis
+    environment:
+      - PYTHONUNBUFFERED=0
+    volumes:
+      - base-data:/data
+      - ./backend/:/code
