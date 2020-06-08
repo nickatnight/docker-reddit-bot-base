@@ -1,3 +1,0 @@
-praw==7.0.0
-redis==3.5.3
-requests==2.23.0

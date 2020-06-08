@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+
+import os
+
+import praw
+
+
+class RedditBotBase(object):
+    def __init__(self):
+        self.flair = None
+        self.user_agent = f"{os.getenv('BOT_NAME')} | {os.getenv('VERSION')} | By {os.getenv('DEVELOPER')}"
+        self.subreddit = os.getenv("SUBREDDIT")
+        self.xpost_subreddit = os.getenv("XPOST_SUBREDDIT")
+        self.delay = os.getenv("DELAY")
+        self.reddit = praw.Reddit(
+            client_id=os.getenv("CLIENT_ID"),
+            client_secret=os.getenv("CLIENT_SECRET"),
+            username=os.getenv("USERNAME"),
+            password=os.getenv("PASSWORD"),
+            user_agent=self.user_agent,
+        )
+
+        print(f"Starting up... {self.user_agent}")
+
+"""
+Ex:
+
+class Bot(RedditBotBase):
+    def main():
+        while True:
+            print(f"...some bot is running")
+            for post in self.reddit.subreddit(self.subreddit).stream.submissions(pause_after=1):
+                # some loop code here
+                print(post.title)
+            time.sleep(int(self.delay))
+
+
+def main():
+    b = Bot()
+    b.main()
+"""
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    main()

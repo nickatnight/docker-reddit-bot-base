@@ -1,4 +1,0 @@
--r base.txt
-
-praw-oauth2util==0.3.5
-beautifulsoup4==4.9.1
