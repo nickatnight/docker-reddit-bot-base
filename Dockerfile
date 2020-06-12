@@ -8,7 +8,7 @@ RUN apk add --no-cache \
     py3-pip &&\
     pip3 install --upgrade pip &&\
     # add any new python dependencies here
-    pip3 install --no-cache-dir requests praw &&\
+    pip3 install --no-cache-dir praw &&\
     rm -rf /tmp/*
 
 COPY bot /usr/local/bin/

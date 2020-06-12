@@ -10,7 +10,6 @@ class RedditBotBase(object):
         self.flair = None
         self.user_agent = f"{os.getenv('BOT_NAME')} | {os.getenv('VERSION')} | By {os.getenv('DEVELOPER')}"
         self.subreddit = os.getenv("SUBREDDIT")
-        self.xpost_subreddit = os.getenv("XPOST_SUBREDDIT")
         self.delay = os.getenv("DELAY")
         self.reddit = praw.Reddit(
             client_id=os.getenv("CLIENT_ID"),
