@@ -11,14 +11,14 @@ A base project for creating Reddit bots
 4. run `./bot`
 
 ### Advanced
-1. Clone repo `git clone git@github.com:nickatnight/docker-reddit-bot-base.git`
+1. Clone repo `git clone https://github.com/nickatnight/docker-reddit-bot-base`
 2. `cd docker-reddit-bot-base`
 3. Add environment variables as needed in `.env`
 4. Provision your your base libraries [here](https://www.reddit.com/r/RequestABot/comments/cyll80/a_comprehensive_guide_to_running_your_reddit_bot/)
 5. run `./bot`
 
 ### Elite
-1. Clone repo `git clone git@github.com:nickatnight/docker-reddit-bot-base.git`
+1. Clone repo `git clone https://github.com/nickatnight/docker-reddit-bot-base`
 2. `cd docker-reddit-bot-base`
 3. Add environment variables as needed in `.env`
 4. Install [Docker](https://www.docker.com/products/docker-desktop)
