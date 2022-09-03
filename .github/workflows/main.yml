@@ -9,7 +9,7 @@ on:
       - master
       - develop
 
-# jobs:
+jobs:
 #   linter:
 #     runs-on: ubuntu-20.04
 #     name: Check python linting
