@@ -1,0 +1,71 @@
+name: lint and test
+
+on:
+  push:
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - master
+      - develop
+
+# jobs:
+#   linter:
+#     runs-on: ubuntu-20.04
+#     name: Check python linting
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Start linter
+#         run: |
+#           docker run --rm -w="/code/backend" -v $(pwd):/code alpine/flake8:3.9.2 --config=pyproject.toml .
+
+#   black:
+#     runs-on: ubuntu-20.04
+#     name: Black code formatting
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Set up Python
+#         uses: actions/setup-python@v1
+#         with:
+#           python-version: '3.9'
+#       - name: run black
+#         working-directory: ./backend
+#         run: |
+#           pip install black==22.6.0
+#           black --check --config=pyproject.toml .
+
+#   isort:
+#     runs-on: ubuntu-20.04
+#     name: isort imports
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Set up Python
+#         uses: actions/setup-python@v1
+#         with:
+#           python-version: '3.9'
+#       - name: run black
+#         working-directory: ./backend
+#         run: |
+#           pip install isort==5.10.1
+#           isort --settings-path=pyproject.toml src
+
+  create-release:
+    # needs: [linter, black, isort]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # need this for all history for all branches and tags
+      - name: Create Release
+        id: create_release
+        uses: nickatnight/releases-action@v3
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    outputs:
+      ReleaseTag: ${{ steps.create_release.outputs.release_tag }}
